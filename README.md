@@ -7,6 +7,16 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+
+<img width="1680" alt="Screenshot 2025-03-08 at 15 53 53" src="https://github.com/user-attachments/assets/747da99c-6e9c-436e-9810-5ba7185525bd" />
+<img width="1680" alt="Screenshot 2025-03-08 at 15 53 36" src="https://github.com/user-attachments/assets/9a0f03df-ae2c-4ea6-a1e1-d29124db64bf" />
+<img width="1680" alt="Screenshot 2025-03-08 at 15 52 46" src="https://github.com/user-attachments/assets/f7d1b36d-9e8d-4304-824d-f658c054e886" />
+<img width="1680" alt="Screenshot 2025-03-08 at 15 52 40" src="https://github.com/user-attachments/assets/43dda153-acb6-48f5-a367-469b9b8b3bd1" />
+<img width="1680" alt="Screenshot 2025-03-08 at 15 52 12" src="https://github.com/user-attachments/assets/bb08c910-b5e8-464d-85c0-4303bfab0eba" />
+<img width="1680" alt="Screenshot 2025-03-08 at 15 51 49" src="https://github.com/user-attachments/assets/e194e86b-f9d1-49e4-98cb-448c40c7032c" />
+<img width="1680" alt="Screenshot 2025-03-08 at 15 51 41" src="https://github.com/user-attachments/assets/63241bb4-6e92-4826-a165-f93c9c3bdc31" />
+<img width="1680" alt="Screenshot 2025-03-08 at 15 48 35" src="https://github.com/user-attachments/assets/11d86029-4431-4dca-ba25-2cbd3983b26a" />
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
