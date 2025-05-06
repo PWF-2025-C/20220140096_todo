@@ -5,24 +5,41 @@ use App\Http\Controllers\TodoController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
+// Halaman awal
 Route::get('/', function () {
     return view('welcome');
 });
 
+// Dashboard (perlu login dan verifikasi)
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+// Group route yang memerlukan autentikasi
 Route::middleware('auth')->group(function () {
+
+    // Profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/todo', [TodoController::class, 'index'])->name('todo.index');
-    Route::get('/todo/create', [TodoController::class, 'create'])->name('todo.create');
-    Route::post('/todo', [TodoController::class, 'edit'])->name('todo.edit');
+    // Todo
+    Route::patch('/todo/{todo}/complete', [TodoController::class, 'complete'])->name('todo.complete');
+    Route::patch('/todo/{todo}/uncomplete', [TodoController::class, 'uncomplete'])->name('todo.uncomplete');
+    Route::delete('/todo/{todo}', [TodoController::class, 'destroy'])->name('todo.destroy');
+    Route::delete('/todo', [TodoController::class, 'destroyCompleted'])->name('todo.deleteallcompleted');
 
+    // User
     Route::get('/user', [UserController::class, 'index'])->name('user.index');
+
+    // Admin khusus
+    Route::middleware(['auth', 'admin'])->group(function () {
+        Route::resource('todo', TodoController::class)->except(['show']);
+        Route::patch('/user/{user}/makeadmin', [UserController::class, 'makeadmin'])->name('user.makeadmin');
+        Route::patch('/user/{user}/removeadmin', [UserController::class, 'removeadmin'])->name('user.removeadmin');
+        Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('user.destroy');
+    });
 });
 
+// Routing autentikasi
 require __DIR__.'/auth.php';

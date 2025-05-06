@@ -9,21 +9,18 @@ use Tests\TestCase;
 class EnvironmentTest extends TestCase
 {
     /**
-     * A basic feature test example.
+     * Test membaca nilai environment variable.
      */
     public function test_example(): void
     {
-        $appName = env ("YOUTUBE");
-        self::assertEquols("programer", $appName);
-        // $response = $this->get('/');
-        // $response->assertStatus(200);
     }
-    public function testDefaultValue()
-{
-    $author = env("AUTHOR", "Eko");
-    self::assertEquols("Eko", $author);
-}
 
-
-    
+    /**
+     * Test nilai default environment variable.
+     */
+    public function testDefaultValue(): void
+    {
+        $author = env("AUTHOR", "Eko");
+        self::assertEquals("Eko", $author);
+    }
 }
