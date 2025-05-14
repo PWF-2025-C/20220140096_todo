@@ -19,7 +19,8 @@ class TodoFactory extends Factory
         return [
             'user_id' => rand(1, 100),
             'title' => ucwords(fake()->sentence()),
-            'is_complete' => rand(1, 10) 
+            'is_complete' => rand(1, 10),
+            'category_id' => Category::inRandomOrder()->first()->id ?? Category::factory(), 
         ];
         
     }

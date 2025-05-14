@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->boolean('is_complete')->default(false);
             $table->timestamps();
+            $table->foreignId('category_id')->nullable()->constrained()->cascadeOnDelete();
         });
     }
 

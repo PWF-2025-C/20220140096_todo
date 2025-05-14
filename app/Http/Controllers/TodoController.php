@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Todo;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\Category;
 class TodoController extends Controller
 {
     public function index()
     {
-        // Mengambil todo milik pengguna yang sedang login
+    
         $todos = Todo::where('user_id', Auth::id())->orderBy('created_at', 'desc')->get();
         
         $todosCompleted = Todo::where('user_id', auth()->user()->id)
@@ -24,28 +24,32 @@ class TodoController extends Controller
     {
         // Validasi input
         $request->validate([
-            'title' => 'required|string|max:25',
+            'title' => 'required',
+            'category_id' => 'nullable|exists:categories,id',
         ]);
 
         // Membuat todo baru
-        $todo = Todo::create([
-            'title' => ucfirst($request->title),
-            'user_id' => Auth::id(),
+        Todo::create([
+            'title' => $request->title,
+            'user_id' => auth()->id(),
+            'category_id' => $request->category_id ?: null,
         ]);
 
-        return redirect()->route('todo.index')->with('success', 'Todo created successfully.');
-    }
+        return redirect()->route('todo.index');   
+     }
 
     public function create()
     {
-        return view('todo.create');
+        $categories = Category::all();
+        return view('todo.create', compact('categories'));
     }
 
         public function edit(Todo $todo)
     {
         // Cek apakah user yang login adalah pemilik todo
-        if (auth()->user()->id == $todo->user_id) {
-            return view('todo.edit', compact('todo'));
+        if (auth()->id() == $todo->user_id) {
+        $categories = \App\Models\Category::all(); // ambil semua kategori
+        return view('todo.edit', compact('todo', 'categories'));
         } else {
             return redirect()->route('todo.index')->with('danger', 'You are not authorized to edit this todo!');
         }
@@ -56,11 +60,13 @@ class TodoController extends Controller
         // Validasi input
         $request->validate([
             'title' => 'required|max:255',
+            'category_id' => 'nullable|exists:categories,id',
         ]);
 
         // Update todo dengan cara yang lebih rapi
         $todo->update([
             'title' => ucfirst($request->title),
+            'category_id' => $request->category_id ?: null,
         ]);
 
         return redirect()->route('todo.index')->with('success', 'Todo updated successfully!');
