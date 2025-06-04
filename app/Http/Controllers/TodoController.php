@@ -103,7 +103,7 @@ class TodoController extends Controller
         return redirect()->route('todo.index')->with('danger', 'You are not authorized to uncomplete this todo!');
     }
 
-        public function destroy(Todo $todo)
+    public function destroy(Todo $todo)
     {
         if (auth()->user()->id == $todo->user_id) {
             $todo->delete();
