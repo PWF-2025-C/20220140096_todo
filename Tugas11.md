@@ -1,0 +1,1 @@
+![alt text](<screenshoot/Tugas 11/Screenshot 2025-06-04 at 18.35.35.png>)
